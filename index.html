@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Lucas Bozzi. Analítica e integración de datos, evaluación de políticas públicas y gobernanza.">
+<title>Lucas Bozzi · Datos y políticas públicas</title>
+<style>
+/*
+  Portfolio V10 — profundidad sutil / mobile-first.
+  Esta capa define reglas de diseño, no medidas para textos específicos.
+  Para sumar contenido, reutilizar .wrap, .section-grid, .project-grid y .project-card.
+  No hay alturas fijas ni textos truncados: el contenido puede crecer.
+*/
+:root {
+  color-scheme: light;
+  /* Identidad */
+  --ink: #292a28;
+  --muted: #575854;
+  --accent: #c94828;
+  --accent-ink: #c44728;
+  --accent-hover: #a83a20;
+  --accent-on-dark: #ff9a73;
+  --accent-data-on-dark: #ffb08e;
+  --pale: #f8f7f5;
+  --line: #d9d7d2;
+
+  /* Escala compartida: cambiando estos valores cambia toda la composición. */
+  --page-width: 74rem;
+  --page-gutter: clamp(1.125rem, 4.2vw, 4rem);
+  --content-gap: clamp(2.25rem, 5.2vw, 5.5rem);
+  --section-space: clamp(3.4rem, 6.5vw, 5.8rem);
+  --hero-space: clamp(3.9rem, 7vw, 6rem);
+  --contact-space: clamp(3.3rem, 5.3vw, 4.8rem);
+  --space-xs: .5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --card-radius: 7px;
+  /* Elevación discreta: las superficies se distinguen sin parecer botones. */
+  --shadow-header: 0 14px 32px -18px rgba(29, 28, 25, .24), 0 3px 9px -5px rgba(29, 28, 25, .14);
+  --shadow-card-light: 0 24px 56px -26px rgba(36, 32, 28, .30), 0 8px 18px -10px rgba(36, 32, 28, .15), 0 1px 0 rgba(255,255,255,.75) inset;
+  --shadow-card-dark: 0 28px 54px -24px rgba(0, 0, 0, .50), 0 10px 22px -12px rgba(0, 0, 0, .34), inset 0 1px 0 rgba(255, 255, 255, .05);
+  --shadow-button: 0 14px 24px -12px rgba(156, 47, 23, .36), 0 3px 8px rgba(50, 30, 25, .10);
+  --nav-height: 9rem;
+
+  /* Tipografía fluida, sin tamaños personalizados por sección. */
+  --type-display: clamp(3.15rem, 6.8vw, 6.45rem);
+  --type-section: clamp(2.3rem, 4.45vw, 4.1rem);
+  --type-subheading: clamp(1.32rem, 1.85vw, 1.67rem);
+  --type-lead: clamp(1.125rem, 1.5vw, 1.35rem);
+  --type-body: 1rem;
+  --type-small: .875rem;
+  --text-measure: 50ch;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font: var(--type-body)/1.62 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { width: min(var(--page-width), calc(100% - 2 * var(--page-gutter))); margin-inline: auto; }
+h1, h2, h3, p, figure, dl, dd { margin: 0; }
+h1, h2, h3 { font-weight: 600; letter-spacing: -.048em; text-wrap: balance; overflow-wrap: break-word; }
+h1 { line-height: 1.045; }
+h2 { line-height: 1.09; }
+h3 { line-height: 1.22; }
+p { color: var(--muted); text-wrap: pretty; overflow-wrap: break-word; }
+a { color: var(--accent); text-underline-offset: .22em; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.skip { position: fixed; top: -8rem; left: 1rem; z-index: 10; background: #fff; padding: .6rem; }
+.skip:focus { top: .5rem; }
+
+/* Cabecera adaptable a etiquetas futuras: puede crecer en alto sin romper anclas. */
+header { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.92); backdrop-filter: saturate(140%) blur(8px); -webkit-backdrop-filter: saturate(140%) blur(8px); border-bottom: 1px solid rgba(217,215,210,.9); transition: box-shadow .2s ease, background-color .2s ease; }
+header.is-scrolled { box-shadow: var(--shadow-header); background: rgba(255,255,255,.96); }
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0; padding-block: .2rem; }
+.brand { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-size: 1.25rem; font-weight: 720; letter-spacing: -.055em; text-decoration: none; }
+.brand b, h1 b { color: var(--accent); }
+nav { flex: 1 1 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 .6rem; }
+nav a, .foot a { display: inline-flex; align-items: center; min-height: 44px; }
+nav a { width: fit-content; color: var(--ink); font-size: .875rem; text-decoration: none; transition: color .16s ease; }
+nav a:hover, nav a[aria-current] { color: var(--accent-ink); text-decoration: underline; text-decoration-thickness: 2px; }
+section[id], main { scroll-margin-top: var(--nav-height); }
+
+/* Esqueleto común para portada y dos recorridos; retícula sin alturas rígidas. */
+.hero, .band { padding-block: var(--section-space); }
+.hero { padding-block: var(--hero-space); }
+.contact { padding-block: var(--contact-space); }
+.section-grid { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: clamp(2.1rem, 4vw, 3rem); }
+.section-grid > * { min-width: 0; }
+.place, .eyebrow { font-size: .85rem; font-weight: 600; }
+.place { color: var(--muted); }
+.eyebrow { color: var(--accent-ink); margin-bottom: var(--space-sm); }
+h1 { font-size: var(--type-display); letter-spacing: -.068em; margin: .7rem 0 1.2rem; }
+.lead { max-width: 43ch; color: var(--ink); font-size: var(--type-lead); line-height: 1.52; }
+.bio { max-width: 46rem; border-left: 2px solid var(--accent); padding: .45rem clamp(1rem, 1.8vw, 1.3rem) .45rem clamp(1.25rem, 3vw, 2.5rem); border-radius: 0 8px 8px 0; background: linear-gradient(180deg, rgba(248,247,245,.9), rgba(248,247,245,.55)); box-shadow: 0 18px 34px -30px rgba(36, 32, 28, .16); }
+.bio h2 { font-size: 1.375rem; margin-bottom: .75rem; }
+.bio p { max-width: 48ch; }
+.band { border-top: 1px solid var(--line); }
+.band h2 { font-size: var(--type-section); margin-bottom: 1.15rem; }
+.band h3 { font-size: var(--type-subheading); margin: 1.85rem 0 .65rem; }
+.band .intro { font-size: clamp(1.0625rem, 1.2vw, 1.125rem); line-height: 1.58; max-width: 46ch; }
+.band h3 + p { max-width: var(--text-measure); }
+
+/* Casos de demostración: mismo contenido que V8; sin rediseño de casos en esta iteración. */
+.tech { background: var(--ink); color: #fff; --card-surface: #333532; --card-line: #595a55; --card-copy: #dbdcd6; }
+.tech p { color: #dbdcd6; }
+.tech .eyebrow, .tech a:not(.button) { color: var(--accent-on-dark); }
+.tech a:focus-visible { outline-color: var(--accent-on-dark); }
+.policy { background: var(--pale); --card-surface: #fff; --card-line: var(--line); --card-copy: var(--muted); }
+.exhibit, .sheet { min-width: 0; padding: clamp(1.25rem, 3vw, 2.5rem); border-radius: var(--card-radius); }
+.exhibit { border: 1px solid #595a55; background: #353734; box-shadow: var(--shadow-card-dark); }
+figcaption { margin-bottom: 1.4rem; font-size: clamp(1.25rem, 1.7vw, 1.5rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.25; text-wrap: balance; }
+table { border-collapse: collapse; width: 100%; table-layout: fixed; text-align: left; }
+th, td { border-bottom: 1px solid #666760; padding: .8rem .25rem; }
+th { overflow-wrap: break-word; }
+thead th { color: #deded9; font-size: .77rem; font-weight: 500; line-height: 1.4; }
+tbody th { font-size: .95rem; }
+td { font: .85rem/1.4 Consolas, "SFMono-Regular", monospace; overflow-wrap: anywhere; }
+td:last-child { color: var(--accent-data-on-dark); }
+.note { margin-top: 1.25rem; font-size: .8125rem; line-height: 1.5; }
+.sheet { background: #fff; border: 1px solid rgba(217,215,210,.92); border-left: 4px solid var(--accent); box-shadow: var(--shadow-card-light); }
+.metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-sm); margin-top: .1rem; }
+.metrics div { display: flex; flex-direction: column-reverse; align-items: start; min-width: 0; }
+.metrics div + div { border-left: 1px solid var(--line); padding-left: clamp(.8rem, 2vw, 2rem); }
+dd { color: var(--accent-ink); font-size: clamp(3.125rem, 6vw, 5.75rem); font-weight: 500; line-height: 1.05; letter-spacing: -.065em; overflow-wrap: anywhere; }
+dt { font-size: .875rem; line-height: 1.35; }
+
+/* Extensión futura: añadir cualquier número de tarjetas sin tocar el grid principal.
+   Insertar un .project-grid dentro de un .wrap, después del .section-grid.
+   Cada artículo .project-card se dimensiona según su propio contenido. */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: clamp(1rem, 2vw, 1.5rem); margin-top: clamp(2.25rem, 5vw, 4rem); }
+.project-grid:empty { display: none; }
+.project-card { min-width: 0; padding: clamp(1.35rem, 2.6vw, 2rem); border: 1px solid var(--card-line, var(--line)); background: var(--card-surface, #fff); border-radius: var(--card-radius); box-shadow: var(--shadow-card-light); }
+.tech .project-card { box-shadow: var(--shadow-card-dark); }
+.project-card h3 { margin: 0 0 .75rem; font-size: var(--type-subheading); overflow-wrap: break-word; }
+.project-card p { color: var(--card-copy, var(--muted)); max-width: 62ch; }
+.project-card .project-label { margin-bottom: .75rem; font-size: .8125rem; letter-spacing: .015em; font-weight: 600; color: var(--accent-on-dark); }
+.policy .project-card .project-label { color: var(--accent-ink); }
+
+/* Contacto y cierre sujetos a la misma retícula que los contenidos. */
+.contact { background: #fff; }
+.contact h2 { font-size: clamp(2.3rem, 4.25vw, 3.8rem); }
+.contact .wrap { display: grid; gap: 1.75rem; align-items: center; }
+.contact p { max-width: 48ch; }
+.button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; max-width: 100%; padding: .75rem 1.45rem; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 600; text-align: center; text-decoration: none; line-height: 1.35; transition: background-color .16s ease, box-shadow .16s ease; box-shadow: var(--shadow-button); }
+.button:hover { background: var(--accent-hover); box-shadow: 0 16px 28px -12px rgba(156, 47, 23, .40), 0 3px 8px rgba(50, 30, 25, .11); }
+.contact-action { min-width: 0; justify-self: start; }
+footer { border-top: 1px solid var(--line); font-size: .875rem; }
+.foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .45rem 1.25rem; padding-block: .65rem; }
+
+/* La base es móvil; la retícula se expande cuando el contenido tiene espacio. */
+@media (min-width: 375px) {
+  nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 .65rem; }
+  nav a { font-size: .875rem; }
+  thead th { font-size: .8125rem; }
+  td { font-size: .9rem; }
+}
+@media (min-width: 720px) {
+  .bar { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(1.25rem, 3.25vw, 3rem); padding-block: .55rem; }
+  nav { justify-content: flex-end; gap: 0 clamp(.7rem, 2vw, 2.25rem); }
+  nav a { font-size: .94rem; }
+  .exhibit, .sheet { padding: clamp(1.5rem, 3.05vw, 2.5rem); }
+  td { font-size: clamp(.9rem, 1.25vw, 1.075rem); }
+  dd { font-size: clamp(3.5rem, 6vw, 5.75rem); }
+}
+@media (min-width: 900px) {
+  .hero-grid { grid-template-columns: minmax(0, 1.16fr) minmax(0, .84fr); gap: var(--content-gap); align-items: center; }
+  .band-grid { grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr); gap: var(--content-gap); align-items: start; }
+  .contact .wrap { grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr); gap: var(--content-gap); }
+  .bio { max-width: 48ch; }
+  .contact-action { justify-self: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  nav a, .button, header { transition: none; }
+}
+</style>
+</head><body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header><div class="wrap bar"><a class="brand" href="#portada">Lucas Bozzi<b>.</b></a><nav aria-label="Secciones del portfolio"><a href="#portada">Inicio</a><a href="#it-y-datos">IT y datos</a><a href="#politicas-publicas">Políticas públicas</a><a href="#contacto">Contacto</a></nav></div></header>
+<main id="contenido" tabindex="-1">
+<section id="portada" class="hero" aria-labelledby="titulo"><div class="wrap section-grid hero-grid"><div><p class="place">La Plata, Argentina</p><h1 id="titulo">Lucas Bozzi<b>.</b></h1><p class="lead">Soy licenciado en Ciencia Política. Trabajo en analítica e integración de datos y en el diseño y la evaluación de políticas públicas.</p></div><div class="bio"><h2>Sobre mí</h2><p>Mi recorrido en el sector público empezó con la planificación y la evaluación. Hoy, en la Dirección de Datos de la Provincia de Buenos Aires, esa experiencia orienta mi trabajo: antes de armar un reporte, busco entender quién lo va a usar y qué necesita decidir.</p></div></div></section>
+<section id="it-y-datos" class="band tech" aria-labelledby="tit-it"><div class="wrap"><div class="section-grid band-grid"><div><h2 id="tit-it">IT y datos</h2><p class="intro">Integro fuentes con SQL y Python y preparo datos para tableros y reportes de gestión.</p><h3>Dos formatos, un reporte mensual</h3><p>Dos sucursales registran enero de maneras distintas. Un período común permite consolidar las operaciones del mes y conservar el origen de cada registro.</p></div><figure class="exhibit"><figcaption>Normalización del período</figcaption><table><thead><tr><th scope="col">Sucursal</th><th scope="col">Origen</th><th scope="col">Período común</th></tr></thead><tbody><tr><th scope="row">A</th><td>ene-26</td><td>2026-01</td></tr><tr><th scope="row">B</th><td>2026/01</td><td>2026-01</td></tr></tbody></table><p class="note">Ejemplo ilustrativo con datos ficticios.</p></figure></div><!-- FUTURO: insertar .project-grid aquí, como hermano de .section-grid, cuando se definan los casos de IT. --></div></section>
+<section id="politicas-publicas" class="band policy" aria-labelledby="tit-pp"><div class="wrap"><div class="section-grid band-grid"><div><h2 id="tit-pp">Políticas públicas</h2><p class="intro">Trabajo en planificación, evaluación y gobernanza de datos. Me interesa cómo las organizaciones definen qué medir y cómo usan esa información.</p><h3>¿A cuántas personas llegó el programa?</h3><p>Si una persona asiste a tres encuentros, suma tres asistencias. Para evaluar el alcance del programa, cuenta una sola vez durante el período.</p></div><figure class="sheet"><figcaption>Alcance y participación</figcaption><dl class="metrics"><div><dt>Personas únicas</dt><dd>60</dd></div><div><dt>Asistencias</dt><dd>96</dd></div></dl><p class="note">Programa de formación · Ejemplo ficticio.</p></figure></div><!-- FUTURO: insertar .project-grid aquí, como hermano de .section-grid, cuando se definan los casos de políticas públicas. --></div></section>
+<section id="contacto" class="band contact" aria-labelledby="tit-contacto"><div class="wrap"><div><h2 id="tit-contacto">Contacto</h2><p>Para conversar sobre una oportunidad laboral, una consultoría o un proyecto, podés escribirme por LinkedIn.</p></div><div class="contact-action"><a class="button" href="https://www.linkedin.com/in/lucasbozzi2/">Contactar por LinkedIn</a></div></div></section>
+</main><footer><div class="wrap foot"><span>Lucas Bozzi · La Plata</span><a href="#portada">Volver al inicio</a></div></footer>
+<script>
+const header = document.querySelector('header');
+const links = [...document.querySelectorAll('header nav a')];
+const sections = links.map(link => document.getElementById(link.hash.slice(1))).filter(Boolean);
+function markSection() {
+  if (!sections.length) return;
+  const top = header.getBoundingClientRect().bottom + 12;
+  let active = sections[0];
+  for (const section of sections) {
+    if (section.getBoundingClientRect().top <= top) active = section;
+  }
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) active = sections[sections.length - 1];
+  for (const link of links) {
+    if (link.hash === '#' + active.id) link.setAttribute('aria-current','location');
+    else link.removeAttribute('aria-current');
+  }
+}
+function sizeHeader() {
+  document.documentElement.style.setProperty('--nav-height',(header.offsetHeight + 8) + 'px');
+  markSection();
+}
+function updateHeaderDepth() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
+sizeHeader();
+updateHeaderDepth();
+if ('ResizeObserver' in window) new ResizeObserver(sizeHeader).observe(header);
+window.addEventListener('scroll',()=>{markSection();updateHeaderDepth();},{passive:true});
+window.addEventListener('resize',sizeHeader);
+window.addEventListener('pageshow',()=>{markSection();updateHeaderDepth();});
+</script></body></html>
